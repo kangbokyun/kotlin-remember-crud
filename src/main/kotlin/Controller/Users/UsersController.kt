@@ -1,7 +1,7 @@
 package com.practiceBlog.Controller.User
 
-import com.practiceBlog.Domain.DTO.User.UserDTO
-import com.practiceBlog.Service.User.UserService
+import com.practiceBlog.Domain.DTO.Users.UsersDTO
+import com.practiceBlog.Service.Users.UsersService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -12,30 +12,30 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class UserController(
-    @Autowired private val userService: UserService
+class UsersController(
+    @Autowired private val usersService: UsersService
 ) {
     @PostMapping("/user/signup")
     fun UserSignUp(
-        @RequestBody userDTO: UserDTO,
+        @RequestBody usersDTO: UsersDTO,
     ): ResponseEntity<HttpStatus> {
-        val result = userService.UserSignUp(userDTO)
+        val result = usersService.UserSignUp(usersDTO)
         return ResponseEntity.ok().body(HttpStatus.OK)
     }
 
     @PutMapping("/user/update-all-info")
     fun UserInfoUpdate(
-        @RequestBody userDTO: UserDTO,
+        @RequestBody usersDTO: UsersDTO,
     ): ResponseEntity<HttpStatus> {
-        val result = userService.UserInfoUpdate(userDTO)
+        val result = usersService.UserInfoUpdate(usersDTO)
         return ResponseEntity.ok().body(HttpStatus.OK)
     }
 
     @DeleteMapping("/user/delete")
     fun UserDelete(
-        @RequestBody userDTO: UserDTO,
+        @RequestBody usersDTO: UsersDTO,
     ) :ResponseEntity<HttpStatus> {
-        userService.DeleteUser(userDTO)
+        usersService.DeleteUser(usersDTO)
         return ResponseEntity.ok().body(HttpStatus.OK)
     }
 }
